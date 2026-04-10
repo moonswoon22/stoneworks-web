@@ -1,0 +1,977 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Layout base (matches index2/index3 background + centering) */
+  body {
+    font-family: 'Times New Roman', serif;
+    /* ~75% of the way from #cac2c2 back toward original #cfcac0 */
+    background-color: #cec8c1;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+  }
+
+  /*
+   * Subpages: keep the same flex alignment as home (flex-start on the cross axis
+   * would pin the column to the top and shift the crystal). We offset .container
+   * so its top matches a vertically centered “home” column (~620px tall) inside
+   * the padded viewport — the absolute .bg-crystal then sits in the same place
+   * on screen as on index.
+   */
+  body.page-shell-sub {
+    align-items: flex-start;
+    padding: 20px;
+    padding-bottom: 48px;
+  }
+
+  body.page-shell-sub .container {
+    margin-top: calc(max(0px, (100vh - 40px - 620px) / 2));
+  }
+
+  /*
+   * Header + Kings title + nav (+ hint): only this block slides on exit.
+   * Subpages rest at translateY(-21vh) (25% lower than -28vh) to match home → sub exit end.
+   * Subpage → subpage exits slide -21vh → -42vh.
+   */
+  .page-top {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  body.page-shell-sub .page-top {
+    transform: translateY(-21vh);
+  }
+
+  body.nav-exit:not(.page-shell-sub) .page-top {
+    transition:
+      transform 0.52s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.48s ease;
+    transform: translateY(-21vh);
+    opacity: 0.12;
+  }
+
+  body.page-shell-sub.nav-exit .page-top {
+    transition:
+      transform 0.52s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.48s ease;
+    transform: translateY(-42vh);
+    opacity: 0.12;
+  }
+
+  /* Incoming: start at same Y as resting subpage; only fade in */
+  body.page-enter:not(.page-enter-visible) .page-top {
+    opacity: 0;
+    transform: translateY(-21vh);
+  }
+
+  body.page-enter.page-enter-visible .page-top {
+    opacity: 1;
+    transform: translateY(-21vh);
+    transition: opacity 0.48s ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body.nav-exit:not(.page-shell-sub) .page-top,
+    body.page-shell-sub.nav-exit .page-top,
+    body.page-enter:not(.page-enter-visible) .page-top,
+    body.page-enter.page-enter-visible .page-top {
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+
+    body.page-shell-sub .page-top {
+      transform: none !important;
+    }
+  }
+
+.container {
+  background-color: transparent;
+  width: 100%;
+  max-width: 1200px;
+  padding: 60px 40px;
+  position: relative;
+}
+
+.page-foreground {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+  
+  /* Smaller, dreamier “chime strike” motion */
+  @keyframes chimeRing {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); }
+    18%  { transform: translateY(-0.03em) rotate(-1.2deg) scale(1.01); }
+    40%  { transform: translateY(0.015em) rotate(0.9deg) scale(1.006); }
+    60%  { transform: translateY(-0.01em) rotate(-0.5deg) scale(1.003); }
+    82%  { transform: translateY(0) rotate(0.25deg) scale(1.002); }
+    100% { transform: translateY(0) rotate(0deg) scale(1); }
+  }
+
+  /* Soft bounce for nav buttons */
+  @keyframes navBounce {
+    0%   { transform: translateY(0) scale(1); }
+    30%  { transform: translateY(-2px) scale(1.05); }
+    60%  { transform: translateY(1px) scale(0.97); }
+    100% { transform: translateY(0) scale(1); }
+  }
+  
+  /* Audio toggle wiggle */
+  @keyframes toggleWiggle {
+    0%, 100% { transform: scale(2) rotate(0deg); }
+    20% { transform: scale(2) rotate(-10deg); }
+    40% { transform: scale(2) rotate(10deg); }
+    60% { transform: scale(2) rotate(-6deg); }
+    80% { transform: scale(2) rotate(6deg); }
+  }
+  
+  #audio-toggle.wiggle {
+    animation: toggleWiggle 700ms ease-in-out 2;
+  }
+  
+  /* ----- Header (title + letters) using Kings font + stroke from index3 ----- */
+  .title {
+    text-align: center;
+    color: white;
+    font-family: 'Kings', sans-serif;
+    font-size: 128px;
+    font-weight: bold;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.1;
+    display: inline-block;
+    user-select: none;
+  margin-bottom: 4px;
+    -webkit-text-stroke: 3px #f5b984;
+    paint-order: stroke fill;
+  }
+  
+  .letter {
+    display: inline-block;
+    transform-origin: 50% 0%;
+    cursor: pointer;
+    will-change: transform, filter;
+    transition: color 900ms ease, text-shadow 900ms ease;
+    -webkit-text-stroke: 3px #f5b984;
+    paint-order: stroke fill;
+    font-family: inherit;
+  }
+  
+  .letter:hover {
+    transition: color 90ms ease-out, text-shadow 90ms ease-out;
+    color: #d8cbb8;
+    text-shadow:
+      0 0 0.06em rgba(216,203,184,0.50),
+      0 0 0.16em rgba(255,255,255,0.22);
+    animation: chimeRing 1150ms cubic-bezier(.18,.85,.22,1) both;
+  }
+  
+  .letter.is-demo {
+    color: #d8cbb8;
+    text-shadow:
+      0 0 0.06em rgba(216,203,184,0.50),
+      0 0 0.16em rgba(255,255,255,0.22);
+    animation: chimeRing 1150ms cubic-bezier(.18,.85,.22,1) both;
+  }
+  
+/* ----- Main content layout ----- */
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 0px;
+}
+
+/* Pull main content up under the visually lifted .page-top; +28px matches .top-nav bottom margin */
+body.page-shell-sub .page-foreground > .content-wrapper {
+  margin-top: calc(-21vh + 28px);
+}
+
+/* Top header row: home (subpages) + mute — symmetrical corners */
+.header-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 24px;
+}
+
+body.page-shell-sub .header-row {
+  justify-content: flex-start;
+}
+
+/*
+ * Crystal band: same visual scale as the home column.
+ * Subpages have taller .container; without a cap the model scales to the full column height.
+ */
+.bg-crystal {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: min(100%, 520px);
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.55;
+}
+
+.bg-crystal model-viewer {
+  width: 120%;
+  height: 120%;
+  filter: brightness(1.2) saturate(0.9);
+}
+
+.top-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 12px 0 28px;
+}
+  
+  .hint {
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.3;
+    color: rgba(255,255,255,0.9);
+  margin: 0 0 16px;
+  }
+
+  /* Paragraph-level copy only (Inter Regular) — exclude Playfair subheader labels */
+  p:not(.hint):not(.tv-coming-soon-label):not(.tv-embed-platform):not(.music-intro-kicker),
+  .about-copy,
+  .sub-main li {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+  }
+  
+/* ----- Audio toggle + home (same pill treatment) ----- */
+#audio-toggle,
+.home-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 12px 20px;
+  font-size: 20px;
+  border-radius: 999px;
+  border: 3px solid #f5b984;
+  background: rgba(190, 190, 190, 0.761);
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+
+#audio-toggle:hover,
+.home-button:hover {
+  background: #f5b984;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  color: #fff;
+}
+
+#audio-toggle[aria-pressed="true"] {
+  border-color: rgba(255, 255, 255, 0.9);
+  color: #fff;
+}
+
+#audio-toggle:focus-visible,
+.home-button:focus-visible {
+  outline: 2px solid #0066ff;
+  outline-offset: 2px;
+}
+  
+  /* ----- Nav buttons styled like index3 .nav-btn ----- */
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    padding: 20px 40px;
+    font-family: 'Times New Roman', serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    background: rgba(216,203,184,0.761);
+    border: 3px solid #f5b984;
+    border-radius: 12px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    margin-top: 8px;
+  }
+    
+  .nav-link:hover {
+    background: #f5b984;
+    border: 3px solid rgba(255,255,255,0.9);
+    color: #fff;
+    animation: navBounce 260ms ease-out;
+  }
+
+  .nav-link.nav-bounce {
+    animation: navBounce 260ms ease-out;
+  }
+  
+  .nav-link:focus-visible {
+    outline: 2px solid #0066ff;
+    outline-offset: 2px;
+  }
+
+  .nav-link[aria-current="page"] {
+    background: #f5b984;
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #fff;
+  }
+
+  /* ----- Subpages (Music, TV, About) ----- */
+  .sub-main {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    margin-top: 4px;
+  }
+
+  .sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+  }
+
+  .sub-card {
+    background: rgba(216, 203, 184, 0.35);
+    border: 2px solid #f5b984;
+    border-radius: 12px;
+    padding: 22px 24px;
+    min-height: 140px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .sub-card h2 {
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .sub-lead {
+    text-align: center;
+    font-size: 23px;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0 auto 20px;
+    max-width: 520px;
+  }
+
+  /* ----- TV page ----- */
+  .tv-page {
+    text-align: left;
+  }
+
+  .tv-coming-soon {
+    width: 100%;
+    margin: 0 0 28px;
+    padding: 18px 22px;
+    border: 2px solid #f5b984;
+    border-radius: 12px;
+    background: rgba(228, 218, 226, 0.58);
+    text-align: center;
+  }
+
+  .tv-coming-soon-label {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f5b984;
+  }
+
+  .tv-coming-soon-body {
+    margin: 0 auto;
+    max-width: 720px;
+    font-size: 20px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.93);
+  }
+
+  .tv-coming-soon-body strong {
+    font-weight: 600;
+  }
+
+  .tv-lead {
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 auto 32px;
+    max-width: 720px;
+  }
+
+  .tv-lead strong {
+    font-weight: 600;
+  }
+
+  .tv-embed-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: 28px 22px;
+    align-items: start;
+    margin-bottom: 40px;
+    width: 100%;
+  }
+
+  .tv-embed-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin: 0;
+    height: 100%;
+  }
+
+  .tv-embed-platform {
+    margin: 0 0 6px;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(245, 185, 132, 0.95);
+    text-align: center;
+  }
+
+  .tv-stats {
+    width: 100%;
+    padding: 22px 24px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    background: rgba(228, 218, 226, 0.5);
+    border: 2px solid #f5b984;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
+  .tv-stats-heading {
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+
+  .tv-stats-intro {
+    margin: 0 0 14px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .tv-stats-numbers {
+    margin: 0 0 16px;
+    padding-left: 1.2em;
+  }
+
+  .tv-stats-numbers li {
+    margin-bottom: 8px;
+  }
+
+  .tv-stats-detail,
+  .tv-stats-composite {
+    margin: 0 0 14px;
+  }
+
+  .tv-stats-composite {
+    margin-bottom: 20px;
+  }
+
+  .tv-pillars {
+    padding-top: 8px;
+    border-top: 1px solid rgba(245, 185, 132, 0.45);
+  }
+
+  .tv-pillars-title {
+    font-family: inherit;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 10px;
+    color: #fff;
+  }
+
+  .tv-pillars ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  .tv-pillars li {
+    margin-bottom: 10px;
+  }
+
+  .tv-embed-title {
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 1.25;
+  }
+
+  /* TikTok official player (autoplay=0) — not blockquote/embed.js */
+  .tiktok-player-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #f5b984;
+    background: #000;
+  }
+
+  .tiktok-player-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .yt-short-wrap {
+    position: relative;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    aspect-ratio: 9 / 16;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid #f5b984;
+    background: #000;
+  }
+
+  .yt-short-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  /* ----- About ----- */
+  .about-layout {
+    display: grid;
+    grid-template-columns: minmax(220px, 360px) 1fr;
+    gap: 44px;
+    align-items: start;
+    width: 100%;
+  }
+
+  .about-photo {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 12px;
+    border: 2px solid #f5b984;
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .about-copy {
+    font-size: 22px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.92);
+    max-width: 520px;
+  }
+
+  .about-copy a {
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .about-copy a:hover {
+    color: #0066ff;
+  }
+
+  .about-contact {
+    margin-top: 36px;
+    width: 100%;
+    max-width: 960px;
+    padding: 22px 24px;
+    background: rgba(228, 218, 226, 0.5);
+    border: 2px solid #f5b984;
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 22px;
+    line-height: 1.45;
+  }
+
+  .about-contact h2 {
+    font-family: inherit;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #fff;
+  }
+
+  .about-contact p {
+    margin: 0 0 10px;
+  }
+
+  .about-contact p:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-contact a {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    word-break: break-word;
+  }
+
+  .about-contact a:hover {
+    color: #0066ff;
+  }
+
+  /* ----- Music page ----- */
+  .music-page {
+    text-align: left;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  .music-intro-panel {
+    background: rgba(216, 203, 184, 0.761);
+    border: 3px solid #f5b984;
+    border-radius: 12px;
+    box-sizing: border-box;
+    margin: 0 0 28px;
+    padding: 18px 22px;
+    text-align: center;
+  }
+
+  .music-intro-kicker {
+    margin: 0 0 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f5b984;
+  }
+
+  .music-intro-heading {
+    font-family: inherit;
+    font-size: 31px;
+    font-weight: 600;
+    margin: 0 0 12px;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+
+  .music-intro-body {
+    margin: 0 auto;
+    max-width: 640px;
+    font-size: 22px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .music-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    width: 100%;
+  }
+
+  /* Three columns: play | text + waveform + time | artwork (mock layout) */
+  .music-feed-card {
+    background: #d5c7b7;
+    border: 2px solid #f5b984;
+    border-radius: 14px;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 0 rgba(90, 72, 82, 0.12);
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr) minmax(132px, 210px);
+    grid-template-areas: "play center art";
+    gap: 20px 22px;
+    align-items: stretch;
+    padding: 22px 24px;
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .music-card-play-col {
+    grid-area: play;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    min-width: 0;
+  }
+
+  .music-card-center {
+    grid-area: center;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .music-play-btn {
+    flex: 0 0 auto;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    background: rgba(175, 168, 160, 0.85);
+    color: #fff;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s, transform 0.12s ease;
+  }
+
+  .music-play-btn:hover {
+    background: rgba(245, 185, 132, 0.45);
+    border-color: rgba(255, 255, 255, 0.75);
+  }
+
+  .music-play-btn:focus-visible {
+    outline: 2px solid #0066ff;
+    outline-offset: 3px;
+  }
+
+  .music-play-btn .music-pause-icon {
+    display: none;
+    font-size: 24px;
+  }
+
+  .music-play-btn.is-playing .music-play-icon {
+    display: none;
+  }
+
+  .music-play-btn.is-playing .music-pause-icon {
+    display: inline;
+  }
+
+  .music-waveform-wrap {
+    width: 100%;
+    min-width: 0;
+    height: 56px;
+    margin-top: 6px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.14);
+    border: 1px solid rgba(245, 185, 132, 0.4);
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .music-waveform {
+    display: block;
+    width: 100%;
+    height: 56px;
+  }
+
+  .music-time-row {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.82);
+    margin-top: 4px;
+    padding-left: 1px;
+  }
+
+  .music-time-sep {
+    margin: 0 0.2em;
+    opacity: 0.6;
+  }
+
+  .music-card-date {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92);
+    margin: 0;
+  }
+
+  .music-card-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.22rem;
+    font-weight: 600;
+    line-height: 1.22;
+    margin: 0;
+    color: #fff;
+  }
+
+  .music-feed-description p {
+    margin: 0 0 12px;
+  }
+
+  .music-feed-description p:last-child {
+    margin-bottom: 0;
+  }
+
+  .music-feed-description--after-audio {
+    margin-top: 8px;
+  }
+
+  .music-feed-description a {
+    color: rgba(255, 255, 255, 0.95);
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+
+  .music-feed-description a:hover {
+    color: #0066ff;
+  }
+
+  .music-inline-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.92em;
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.25);
+  }
+
+  .music-card-art {
+    grid-area: art;
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 210px;
+    justify-self: end;
+    align-self: start;
+  }
+
+  .music-card-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #f5b984;
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .music-yt-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    margin: 14px 0 16px;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid rgba(245, 185, 132, 0.65);
+    background: #000;
+  }
+
+  .music-yt-wrap iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .music-stream-links {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .music-stream-sep {
+    margin: 0 0.35em;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  
+  /* ----- Responsive tweaks ----- */
+  @media (max-width: 968px) {
+    .content-wrapper {
+      flex-direction: column;
+      gap: 24px;
+    }
+  
+    .title {
+      font-size: 72px;
+      -webkit-text-stroke-width: 2px;
+    }
+  
+    .nav-link {
+      font-size: 22px;
+      min-width: 130px;
+    }
+  
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+
+    .about-photo {
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    .music-feed-card {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "play"
+        "center"
+        "art";
+      gap: 18px;
+    }
+
+    .music-card-play-col {
+      justify-content: center;
+    }
+
+    .music-card-art {
+      max-width: 280px;
+      justify-self: center;
+    }
+
+    .music-waveform-wrap {
+      min-width: 0;
+    }
+
+    .music-yt-wrap {
+      max-width: none;
+    }
+  }

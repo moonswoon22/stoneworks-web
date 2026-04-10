@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STONEWORKS — Music</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;600&family=Kings&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body class="page-shell-sub page-enter">
+  <div class="container">
+    <div class="page-foreground">
+      <div class="page-top">
+        <div class="header-row">
+          <a href="index.html" class="home-button" aria-label="Back to home" title="Home">🏠</a>
+        </div>
+
+        <div class="title">music</div>
+
+        <p class="hint">
+          Releases, radio, and sessions — listen below.
+        </p>
+
+        <div class="top-nav">
+          <a href="music.html" class="nav-link" aria-current="page">Music</a>
+          <a href="tv.html" class="nav-link">TV</a>
+          <a href="https://reverb.com/shop/blue-labs" class="nav-link" rel="noopener noreferrer">Shop</a>
+          <a href="about/" class="nav-link">About</a>
+        </div>
+      </div>
+
+      <div class="content-wrapper">
+        <main class="sub-main music-page">
+          <section class="music-intro-panel" aria-labelledby="music-intro-heading">
+            <p class="music-intro-kicker">Feed</p>
+            <h2 id="music-intro-heading" class="music-intro-heading">What we’re up to</h2>
+            <p class="music-intro-body">
+              Singles, live sets, and radio — stream on-site or follow the links.
+            </p>
+          </section>
+
+          <div class="music-feed">
+            <article class="music-feed-card" data-music-player aria-labelledby="music-card-dublab-title">
+              <div class="music-card-play-col">
+                <audio
+                  class="music-audio"
+                  preload="metadata"
+                  src="files/26_02_04_Soft_Focus.mp3"
+                  aria-hidden="true"
+                ></audio>
+                <button type="button" class="music-play-btn" aria-label="Play or pause DJ set">
+                  <span class="music-play-icon" aria-hidden="true">▶</span>
+                  <span class="music-pause-icon" aria-hidden="true">⏸</span>
+                </button>
+              </div>
+
+              <div class="music-card-center">
+                <time class="music-card-date" datetime="2026-02-04">February 4, 2026</time>
+                <h3 id="music-card-dublab-title" class="music-card-title">DJ set — Dublab w. Lana Miller</h3>
+                <div class="music-feed-description">
+                  <p>
+                    Soft Focus session with Lana Miller on Dublab. You can still open the
+                    <a href="https://www.dublab.com/archive/lana-miller-w-sarah-b-soft-focus-02-04-26" rel="noopener noreferrer">archive page</a>
+                    for their player and show notes.
+                  </p>
+                </div>
+                <div class="music-waveform-wrap">
+                  <canvas class="music-waveform" role="img" aria-label="Waveform — click to seek"></canvas>
+                </div>
+                <div class="music-time-row">
+                  <span class="music-time-current">0:00</span>
+                  <span class="music-time-sep" aria-hidden="true">/</span>
+                  <span class="music-time-duration">0:00</span>
+                </div>
+              </div>
+
+              <div class="music-card-art">
+                <img
+                  src="images/dublab.jpg"
+                  alt="Dublab session"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </article>
+
+            <article class="music-feed-card" data-music-player aria-labelledby="music-card-safe-title">
+              <div class="music-card-play-col">
+                <audio
+                  class="music-audio"
+                  preload="metadata"
+                  src="files/Safe2Assume.m4a"
+                  aria-hidden="true"
+                ></audio>
+                <button type="button" class="music-play-btn" aria-label="Play or pause Safe 2 Assume">
+                  <span class="music-play-icon" aria-hidden="true">▶</span>
+                  <span class="music-pause-icon" aria-hidden="true">⏸</span>
+                </button>
+              </div>
+
+              <div class="music-card-center">
+                <time class="music-card-date" datetime="2025-09-03">September 3, 2025</time>
+                <h3 id="music-card-safe-title" class="music-card-title">Safe 2 Assume — single release</h3>
+                <div class="music-feed-description">
+                  <p>
+                    New single — use the player on the left or watch the video; streaming links are below the video.
+                  </p>
+                </div>
+                <div class="music-feed-description music-feed-description--after-audio">
+                  <p class="music-stream-links">
+                    <a href="https://www.youtube.com/watch?v=75RHEil6ZEg&amp;list=OLAK5uy_nV7of2ohRIwHtKcX2vu0QAKTicClSY0SU" rel="noopener noreferrer">YouTube</a>
+                    <span class="music-stream-sep" aria-hidden="true">·</span>
+                    <a href="https://open.spotify.com/track/4dhddEStHsb2cXyoTAM5Z6?si=VLHUSLUVTF2a-1MqDAQxhg&amp;nd=1&amp;dlsi=88ae7ec86cbb4af0" rel="noopener noreferrer">Spotify</a>
+                    <span class="music-stream-sep" aria-hidden="true">·</span>
+                    <a href="https://music.apple.com/us/song/safe-2-assume/1837717803" rel="noopener noreferrer">Apple Music</a>
+                  </p>
+                </div>
+                <div class="music-waveform-wrap">
+                  <canvas class="music-waveform" role="img" aria-label="Waveform — click to seek"></canvas>
+                </div>
+                <div class="music-time-row">
+                  <span class="music-time-current">0:00</span>
+                  <span class="music-time-sep" aria-hidden="true">/</span>
+                  <span class="music-time-duration">0:00</span>
+                </div>
+              </div>
+
+              <div class="music-card-art">
+                <img
+                  src="images/s2a-artwork.png"
+                  alt="Safe 2 Assume artwork"
+                  width="400"
+                  height="400"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </article>
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+
+  <script src="page-transitions.js"></script>
+  <script src="music-player.js"></script>
+</body>
+</html>
