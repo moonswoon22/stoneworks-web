@@ -258,7 +258,7 @@ body.page-shell-sub .header-row {
   }
 
   /* Paragraph-level copy only (Inter Regular) — exclude Playfair subheader labels */
-  p:not(.hint):not(.tv-coming-soon-label):not(.tv-embed-platform):not(.music-intro-kicker),
+  p:not(.hint):not(.tv-embed-platform),
   .about-copy,
   .sub-main li {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -391,48 +391,24 @@ body.page-shell-sub .header-row {
     text-align: left;
   }
 
-  .tv-coming-soon {
-    width: 100%;
-    margin: 0 0 28px;
-    padding: 18px 22px;
-    border: 2px solid #f5b984;
-    border-radius: 12px;
-    background: rgba(228, 218, 226, 0.58);
-    text-align: center;
-  }
-
-  .tv-coming-soon-label {
-    margin: 0 0 12px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #f5b984;
-  }
-
-  .tv-coming-soon-body {
-    margin: 0 auto;
-    max-width: 720px;
-    font-size: 20px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.93);
-  }
-
-  .tv-coming-soon-body strong {
-    font-weight: 600;
-  }
-
+  /* Shared header lead (Music / TV / Projects) — same tone as former in-page tv-lead */
+  .sub-page-lead,
   .tv-lead {
     text-align: center;
     font-size: 22px;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.9);
-    margin: 0 auto 32px;
+    margin: 0 auto 16px;
     max-width: 720px;
   }
 
+  .sub-page-lead strong,
   .tv-lead strong {
     font-weight: 600;
+  }
+
+  .sub-main .tv-lead {
+    margin-bottom: 32px;
   }
 
   .tv-embed-grid {
@@ -670,42 +646,6 @@ body.page-shell-sub .header-row {
     margin: 0 auto;
   }
 
-  .music-intro-panel {
-    background: rgba(216, 203, 184, 0.761);
-    border: 3px solid #f5b984;
-    border-radius: 12px;
-    box-sizing: border-box;
-    margin: 0 0 28px;
-    padding: 18px 22px;
-    text-align: center;
-  }
-
-  .music-intro-kicker {
-    margin: 0 0 12px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #f5b984;
-  }
-
-  .music-intro-heading {
-    font-family: inherit;
-    font-size: 31px;
-    font-weight: 600;
-    margin: 0 0 12px;
-    color: #fff;
-    letter-spacing: 0.02em;
-  }
-
-  .music-intro-body {
-    margin: 0 auto;
-    max-width: 640px;
-    font-size: 22px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
   .music-feed {
     display: flex;
     flex-direction: column;
@@ -920,6 +860,103 @@ body.page-shell-sub .header-row {
   .music-stream-sep {
     margin: 0 0.35em;
     color: rgba(255, 255, 255, 0.45);
+  }
+
+  /* ----- Projects page (blog-style feed) ----- */
+  .projects-page {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .projects-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .project-feed-card {
+    background: #d5c7b7;
+    border: 2px solid #f5b984;
+    border-radius: 14px;
+    box-sizing: border-box;
+    box-shadow: 6px 6px 0 rgba(90, 72, 82, 0.12);
+    padding: 22px 24px;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .project-card-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .project-card-date {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+  }
+
+  .project-card-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0;
+    color: #fff;
+  }
+
+  .project-card-excerpt {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .project-expand {
+    margin-top: 6px;
+    border-top: 1px solid rgba(245, 185, 132, 0.35);
+    padding-top: 12px;
+  }
+
+  .project-expand-summary {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f5b984;
+    cursor: pointer;
+    list-style: none;
+    padding: 4px 0;
+  }
+
+  .project-expand-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .project-expand[open] .project-expand-summary {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .project-expand-body {
+    margin-top: 12px;
+    padding-top: 4px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .project-expand-body p {
+    margin: 0 0 12px;
+  }
+
+  .project-expand-body p:last-child {
+    margin-bottom: 0;
   }
   
   /* ----- Responsive tweaks ----- */
