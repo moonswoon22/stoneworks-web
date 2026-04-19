@@ -671,6 +671,12 @@ body.page-shell-sub .header-row {
     line-height: 1.5;
   }
 
+  /* Projects: same card shell as music, two columns (text | art) — no play column */
+  .music-feed-card--no-player {
+    grid-template-columns: minmax(0, 1fr) minmax(132px, 210px);
+    grid-template-areas: "center art";
+  }
+
   .music-card-play-col {
     grid-area: play;
     display: flex;
@@ -877,32 +883,6 @@ body.page-shell-sub .header-row {
     width: 100%;
   }
 
-  /* Same shell as .music-feed-card but two columns: text | artwork */
-  .project-feed-card {
-    background: #d5c7b7;
-    border: 2px solid #f5b984;
-    border-radius: 14px;
-    box-sizing: border-box;
-    box-shadow: 6px 6px 0 rgba(90, 72, 82, 0.12);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(132px, 210px);
-    grid-template-areas: "center art";
-    gap: 20px 22px;
-    align-items: stretch;
-    padding: 22px 24px;
-    color: rgba(255, 255, 255, 0.95);
-    font-size: 18px;
-    line-height: 1.5;
-  }
-
-  .project-feed-card .music-card-center {
-    grid-area: center;
-  }
-
-  .project-feed-card .music-card-art {
-    grid-area: art;
-  }
-
   .project-thumb {
     display: block;
     width: 100%;
@@ -1019,7 +999,7 @@ body.page-shell-sub .header-row {
       max-width: none;
     }
 
-    .project-feed-card {
+    .music-feed-card--no-player {
       grid-template-columns: 1fr;
       grid-template-areas:
         "center"
@@ -1027,7 +1007,7 @@ body.page-shell-sub .header-row {
       gap: 18px;
     }
 
-    .project-feed-card .music-card-art {
+    .music-feed-card--no-player .music-card-art {
       max-width: 280px;
       justify-self: center;
     }
