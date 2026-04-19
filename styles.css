@@ -862,61 +862,68 @@ body.page-shell-sub .header-row {
     color: rgba(255, 255, 255, 0.45);
   }
 
-  /* ----- Projects page (blog-style feed) ----- */
+  /* ----- Projects page (music-style cards, no player) ----- */
   .projects-page {
+    text-align: left;
     width: 100%;
-    max-width: 720px;
+    max-width: 960px;
     margin: 0 auto;
   }
 
   .projects-feed {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 28px;
     width: 100%;
   }
 
+  /* Same shell as .music-feed-card but two columns: text | artwork */
   .project-feed-card {
     background: #d5c7b7;
     border: 2px solid #f5b984;
     border-radius: 14px;
     box-sizing: border-box;
     box-shadow: 6px 6px 0 rgba(90, 72, 82, 0.12);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(132px, 210px);
+    grid-template-areas: "center art";
+    gap: 20px 22px;
+    align-items: stretch;
     padding: 22px 24px;
     color: rgba(255, 255, 255, 0.95);
-  }
-
-  .project-card-inner {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: stretch;
-  }
-
-  .project-card-date {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.88);
-    margin: 0;
-  }
-
-  .project-card-title {
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 1.35rem;
-    font-weight: 600;
-    line-height: 1.2;
-    margin: 0;
-    color: #fff;
-  }
-
-  .project-card-excerpt {
-    margin: 0;
     font-size: 18px;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .project-feed-card .music-card-center {
+    grid-area: center;
+  }
+
+  .project-feed-card .music-card-art {
+    grid-area: art;
+  }
+
+  .project-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    border: 2px solid #f5b984;
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .project-thumb--one {
+    background:
+      linear-gradient(145deg, rgba(90, 72, 82, 0.35) 0%, transparent 55%),
+      linear-gradient(225deg, rgba(0, 102, 255, 0.12) 0%, transparent 50%),
+      #a89b8f;
+  }
+
+  .project-thumb--two {
+    background:
+      linear-gradient(160deg, rgba(245, 185, 132, 0.45) 0%, transparent 50%),
+      linear-gradient(320deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%),
+      #8a7f76;
   }
 
   .project-expand {
@@ -1010,5 +1017,18 @@ body.page-shell-sub .header-row {
 
     .music-yt-wrap {
       max-width: none;
+    }
+
+    .project-feed-card {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "center"
+        "art";
+      gap: 18px;
+    }
+
+    .project-feed-card .music-card-art {
+      max-width: 280px;
+      justify-self: center;
     }
   }

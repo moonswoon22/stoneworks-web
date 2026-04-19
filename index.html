@@ -68,10 +68,9 @@
         </p>
 
         <div class="top-nav">
-          <a href="music.html" class="nav-link">Music</a>
           <a href="projects.html" class="nav-link">Projects</a>
+          <a href="music.html" class="nav-link">Music</a>
           <a href="tv.html" class="nav-link">TV</a>
-          <a href="https://reverb.com/shop/blue-labs" class="nav-link" rel="noopener noreferrer">Shop</a>
           <a href="about/" class="nav-link">About</a>
         </div>
       </div>
@@ -238,17 +237,15 @@
         link.addEventListener('mouseenter', () => {
           if (!audioEnabled) return;
 
-          // Map nav buttons to the five-note pentatonic scale
-          if (label === 'music') {
-            drumHit(0);                              // scale[0]
-          } else if (label === 'projects') {
-            drumHit(1);                              // scale[1]
+          // Map nav to pentatonic scale (Projects · Music · TV · About)
+          if (label === 'projects') {
+            drumHit(0);
+          } else if (label === 'music') {
+            drumHit(1);
           } else if (label === 'tv') {
-            drumHit(2);                              // scale[2]
-          } else if (label === 'shop') {
-            drumHit(3);                              // scale[3]
+            drumHit(2);
           } else if (label === 'about') {
-            drumHit(4);                              // scale[4]
+            drumHit(3);
           }
 
           bounceNav(link);
