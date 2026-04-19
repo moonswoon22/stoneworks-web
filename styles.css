@@ -653,7 +653,7 @@ body.page-shell-sub .header-row {
     width: 100%;
   }
 
-  /* Three columns: play | text + waveform + time | artwork (mock layout) */
+  /* Shared card shell; grid template is split so project cards never get the play column */
   .music-feed-card {
     background: #d5c7b7;
     border: 2px solid #f5b984;
@@ -661,8 +661,6 @@ body.page-shell-sub .header-row {
     box-sizing: border-box;
     box-shadow: 6px 6px 0 rgba(90, 72, 82, 0.12);
     display: grid;
-    grid-template-columns: 88px minmax(0, 1fr) minmax(132px, 210px);
-    grid-template-areas: "play center art";
     gap: 20px 22px;
     align-items: stretch;
     padding: 22px 24px;
@@ -671,10 +669,29 @@ body.page-shell-sub .header-row {
     line-height: 1.5;
   }
 
-  /* Projects: same card shell as music, two columns (text | art) — no play column */
-  .music-feed-card--no-player {
+  /* Music only: play | text + waveform + time | artwork */
+  .music-feed-card:not(.music-feed-card--no-player) {
+    grid-template-columns: 88px minmax(0, 1fr) minmax(132px, 210px);
+    grid-template-areas: "play center art";
+  }
+
+  /* Projects: text | artwork (full width to inner left edge; no play column) */
+  .music-feed-card.music-feed-card--no-player {
     grid-template-columns: minmax(0, 1fr) minmax(132px, 210px);
     grid-template-areas: "center art";
+  }
+
+  .music-feed-card.music-feed-card--no-player .music-card-center {
+    text-align: left;
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  /* details/summary don’t always inherit text-align */
+  .music-feed-card.music-feed-card--no-player .project-expand,
+  .music-feed-card.music-feed-card--no-player .project-expand-summary,
+  .music-feed-card.music-feed-card--no-player .project-expand-body {
+    text-align: left;
   }
 
   .music-card-play-col {
@@ -868,20 +885,7 @@ body.page-shell-sub .header-row {
     color: rgba(255, 255, 255, 0.45);
   }
 
-  /* ----- Projects page (music-style cards, no player) ----- */
-  .projects-page {
-    text-align: left;
-    width: 100%;
-    max-width: 960px;
-    margin: 0 auto;
-  }
-
-  .projects-feed {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    width: 100%;
-  }
+  /* ----- Projects page: use .music-page + .music-feed (same spacing as Music) ----- */
 
   .project-thumb {
     display: block;
@@ -973,7 +977,7 @@ body.page-shell-sub .header-row {
       margin: 0 auto;
     }
 
-    .music-feed-card {
+    .music-feed-card:not(.music-feed-card--no-player) {
       grid-template-columns: 1fr;
       grid-template-areas:
         "play"
@@ -986,7 +990,7 @@ body.page-shell-sub .header-row {
       justify-content: center;
     }
 
-    .music-card-art {
+    .music-feed-card:not(.music-feed-card--no-player) .music-card-art {
       max-width: 280px;
       justify-self: center;
     }
@@ -999,7 +1003,7 @@ body.page-shell-sub .header-row {
       max-width: none;
     }
 
-    .music-feed-card--no-player {
+    .music-feed-card.music-feed-card--no-player {
       grid-template-columns: 1fr;
       grid-template-areas:
         "center"
@@ -1007,7 +1011,7 @@ body.page-shell-sub .header-row {
       gap: 18px;
     }
 
-    .music-feed-card--no-player .music-card-art {
+    .music-feed-card.music-feed-card--no-player .music-card-art {
       max-width: 280px;
       justify-self: center;
     }
