@@ -9,7 +9,7 @@
   body {
     font-family: 'Times New Roman', serif;
     /* ~75% of the way from #cac2c2 back toward original #cfcac0 */
-    background-color: #cec8c1;
+    background-color: rgb(200, 194, 186);
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -249,16 +249,29 @@ body.page-shell-sub .header-row {
   margin: 12px 0 28px;
 }
   
-  .hint {
+  /*
+   * Second line under the Kings title: home hint + subpage intros — match index (Times New Roman).
+   * Keep separate from body-copy paragraphs that use Inter below.
+   */
+  .hint,
+  .sub-page-lead,
+  .tv-lead {
     text-align: center;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 24px;
     line-height: 1.3;
-    color: rgba(255,255,255,0.9);
-  margin: 0 0 16px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 auto 16px;
+    max-width: 720px;
   }
 
-  /* Paragraph-level copy only (Inter Regular) — exclude Playfair subheader labels */
-  p:not(.hint):not(.tv-coming-soon-label):not(.tv-embed-platform):not(.music-intro-kicker),
+  .sub-page-lead strong,
+  .tv-lead strong {
+    font-weight: 600;
+  }
+
+  /* Paragraph-level copy only (Inter Regular) — exclude hero hints / leads */
+  p:not(.hint):not(.tv-embed-platform):not(.sub-page-lead):not(.tv-lead),
   .about-copy,
   .sub-main li {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -275,8 +288,8 @@ body.page-shell-sub .header-row {
   padding: 12px 20px;
   font-size: 20px;
   border-radius: 999px;
-  border: 3px solid #f5b984;
-  background: rgba(190, 190, 190, 0.761);
+  border: 3px solid #f5b984f5;
+  background: rgba(190, 190, 190, 0.55);
   color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   user-select: none;
@@ -286,7 +299,7 @@ body.page-shell-sub .header-row {
 
 #audio-toggle:hover,
 .home-button:hover {
-  background: #f5b984;
+  background: #f5b984f5;
   border: 3px solid rgba(255, 255, 255, 0.9);
   color: #fff;
 }
@@ -313,8 +326,8 @@ body.page-shell-sub .header-row {
     font-size: 30px;
     font-weight: 500;
     color: rgba(255, 255, 255, 0.9);
-    background: rgba(216,203,184,0.761);
-    border: 3px solid #f5b984;
+    background: rgba(216, 203, 184, 0.655);
+    border: 3px solid #f5b984f5;
     border-radius: 12px;
     text-decoration: none;
     cursor: pointer;
@@ -323,7 +336,7 @@ body.page-shell-sub .header-row {
   }
     
   .nav-link:hover {
-    background: #f5b984;
+    background: #f5b984f5;
     border: 3px solid rgba(255,255,255,0.9);
     color: #fff;
     animation: navBounce 260ms ease-out;
@@ -391,48 +404,8 @@ body.page-shell-sub .header-row {
     text-align: left;
   }
 
-  .tv-coming-soon {
-    width: 100%;
-    margin: 0 0 28px;
-    padding: 18px 22px;
-    border: 2px solid #f5b984;
-    border-radius: 12px;
-    background: rgba(228, 218, 226, 0.58);
-    text-align: center;
-  }
-
-  .tv-coming-soon-label {
-    margin: 0 0 12px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #f5b984;
-  }
-
-  .tv-coming-soon-body {
-    margin: 0 auto;
-    max-width: 720px;
-    font-size: 20px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.93);
-  }
-
-  .tv-coming-soon-body strong {
-    font-weight: 600;
-  }
-
-  .tv-lead {
-    text-align: center;
-    font-size: 22px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0 auto 32px;
-    max-width: 720px;
-  }
-
-  .tv-lead strong {
-    font-weight: 600;
+  .sub-main .tv-lead {
+    margin-bottom: 32px;
   }
 
   .tv-embed-grid {
@@ -621,6 +594,7 @@ body.page-shell-sub .header-row {
     color: #0066ff;
   }
 
+  /* Secondary panel (softer mauve) — distinct from music/project cards (nav-style fill) */
   .about-contact {
     margin-top: 36px;
     width: 100%;
@@ -670,42 +644,6 @@ body.page-shell-sub .header-row {
     margin: 0 auto;
   }
 
-  .music-intro-panel {
-    background: rgba(216, 203, 184, 0.761);
-    border: 3px solid #f5b984;
-    border-radius: 12px;
-    box-sizing: border-box;
-    margin: 0 0 28px;
-    padding: 18px 22px;
-    text-align: center;
-  }
-
-  .music-intro-kicker {
-    margin: 0 0 12px;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: #f5b984;
-  }
-
-  .music-intro-heading {
-    font-family: inherit;
-    font-size: 31px;
-    font-weight: 600;
-    margin: 0 0 12px;
-    color: #fff;
-    letter-spacing: 0.02em;
-  }
-
-  .music-intro-body {
-    margin: 0 auto;
-    max-width: 640px;
-    font-size: 22px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-  }
-
   .music-feed {
     display: flex;
     flex-direction: column;
@@ -713,22 +651,44 @@ body.page-shell-sub .header-row {
     width: 100%;
   }
 
-  /* Three columns: play | text + waveform + time | artwork (mock layout) */
+  /* Shared card shell — match home .nav-link fill + border (not About .about-contact) */
   .music-feed-card {
-    background: #d5c7b7;
-    border: 2px solid #f5b984;
-    border-radius: 14px;
+    background: rgba(216, 203, 184, 0.655);
+    border: 3px solid #f5b984f5;
+    border-radius: 12px;
     box-sizing: border-box;
-    box-shadow: 6px 6px 0 rgba(90, 72, 82, 0.12);
     display: grid;
-    grid-template-columns: 88px minmax(0, 1fr) minmax(132px, 210px);
-    grid-template-areas: "play center art";
     gap: 20px 22px;
     align-items: stretch;
     padding: 22px 24px;
     color: rgba(255, 255, 255, 0.95);
     font-size: 18px;
     line-height: 1.5;
+  }
+
+  /* Music only: play | text + waveform + time | artwork */
+  .music-feed-card:not(.music-feed-card--no-player) {
+    grid-template-columns: 88px minmax(0, 1fr) minmax(132px, 210px);
+    grid-template-areas: "play center art";
+  }
+
+  /* Projects: text | artwork (full width to inner left edge; no play column) */
+  .music-feed-card.music-feed-card--no-player {
+    grid-template-columns: minmax(0, 1fr) minmax(132px, 210px);
+    grid-template-areas: "center art";
+  }
+
+  .music-feed-card.music-feed-card--no-player .music-card-center {
+    text-align: left;
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  /* details/summary don’t always inherit text-align */
+  .music-feed-card.music-feed-card--no-player .project-expand,
+  .music-feed-card.music-feed-card--no-player .project-expand-summary,
+  .music-feed-card.music-feed-card--no-player .project-expand-body {
+    text-align: left;
   }
 
   .music-card-play-col {
@@ -888,7 +848,7 @@ body.page-shell-sub .header-row {
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 12px;
-    border: 2px solid #f5b984;
+    border: 3px solid #f5b984f5;
     background: rgba(0, 0, 0, 0.12);
   }
 
@@ -921,6 +881,71 @@ body.page-shell-sub .header-row {
     margin: 0 0.35em;
     color: rgba(255, 255, 255, 0.45);
   }
+
+  /* ----- Projects page: use .music-page + .music-feed (same spacing as Music) ----- */
+
+  .project-thumb {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 12px;
+    border: 3px solid #f5b984f5;
+    background: rgba(0, 0, 0, 0.12);
+  }
+
+  .project-thumb--one {
+    background:
+      linear-gradient(145deg, rgba(90, 72, 82, 0.35) 0%, transparent 55%),
+      linear-gradient(225deg, rgba(0, 102, 255, 0.12) 0%, transparent 50%),
+      #a89b8f;
+  }
+
+  .project-thumb--two {
+    background:
+      linear-gradient(160deg, rgba(245, 185, 132, 0.45) 0%, transparent 50%),
+      linear-gradient(320deg, rgba(0, 0, 0, 0.2) 0%, transparent 55%),
+      #8a7f76;
+  }
+
+  .project-expand {
+    margin-top: 6px;
+    border-top: 1px solid rgba(245, 185, 132, 0.35);
+    padding-top: 12px;
+  }
+
+  .project-expand-summary {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f5b984;
+    cursor: pointer;
+    list-style: none;
+    padding: 4px 0;
+  }
+
+  .project-expand-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .project-expand[open] .project-expand-summary {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .project-expand-body {
+    margin-top: 12px;
+    padding-top: 4px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .project-expand-body p {
+    margin: 0 0 12px;
+  }
+
+  .project-expand-body p:last-child {
+    margin-bottom: 0;
+  }
   
   /* ----- Responsive tweaks ----- */
   @media (max-width: 968px) {
@@ -945,11 +970,13 @@ body.page-shell-sub .header-row {
     }
 
     .about-photo {
-      max-width: 420px;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
       margin: 0 auto;
     }
 
-    .music-feed-card {
+    .music-feed-card:not(.music-feed-card--no-player) {
       grid-template-columns: 1fr;
       grid-template-areas:
         "play"
@@ -962,7 +989,7 @@ body.page-shell-sub .header-row {
       justify-content: center;
     }
 
-    .music-card-art {
+    .music-feed-card:not(.music-feed-card--no-player) .music-card-art {
       max-width: 280px;
       justify-self: center;
     }
@@ -973,5 +1000,18 @@ body.page-shell-sub .header-row {
 
     .music-yt-wrap {
       max-width: none;
+    }
+
+    .music-feed-card.music-feed-card--no-player {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "center"
+        "art";
+      gap: 18px;
+    }
+
+    .music-feed-card.music-feed-card--no-player .music-card-art {
+      max-width: 280px;
+      justify-self: center;
     }
   }
