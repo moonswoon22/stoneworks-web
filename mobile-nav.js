@@ -53,7 +53,7 @@
     }
   });
 
-  drawer.querySelectorAll('a.nav-drawer-link').forEach((link) => {
+  drawer.querySelectorAll('a.nav-drawer-link, a.nav-drawer-home').forEach((link) => {
     link.addEventListener('click', closeDrawer);
   });
 })();

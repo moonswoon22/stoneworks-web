@@ -7,7 +7,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400&family=Kings&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@400;600&family=Kings&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -29,8 +29,8 @@
         <nav class="site-nav" aria-label="Site">
           <div class="top-nav">
             <a href="projects.html" class="nav-link">Projects</a>
-            <a href="music.html" class="nav-link">Music</a>
             <a href="tv.html" class="nav-link" aria-current="page">TV</a>
+            <a href="music.html" class="nav-link">Music</a>
             <a href="about/" class="nav-link">About</a>
           </div>
         </nav>
@@ -38,6 +38,62 @@
 
       <div class="content-wrapper">
         <main class="sub-main tv-page">
+          <section class="tv-media-kit" aria-labelledby="tv-kit-heading">
+            <h2 id="tv-kit-heading" class="tv-kit-heading">Audience &amp; reach</h2>
+            <p class="tv-kit-dek">Science, technology, and culture explainers for curious adults — short-form native today, long-form in development.</p>
+
+            <div class="tv-stat-grid">
+              <article class="tv-stat-card">
+                <span class="tv-stat-platform">TikTok</span>
+                <span class="tv-stat-value">~45K</span>
+                <span class="tv-stat-label">followers</span>
+                <span class="tv-stat-note">~700K views/year when active · primary growth channel</span>
+              </article>
+              <article class="tv-stat-card">
+                <span class="tv-stat-platform">YouTube</span>
+                <span class="tv-stat-value">~95K</span>
+                <span class="tv-stat-label">lifetime views</span>
+                <span class="tv-stat-note">~600 subscribers · long-form &amp; Shorts</span>
+              </article>
+              <article class="tv-stat-card">
+                <span class="tv-stat-platform">Instagram</span>
+                <span class="tv-stat-value">~2K</span>
+                <span class="tv-stat-label">followers</span>
+                <span class="tv-stat-note">~30K monthly views · growing</span>
+              </article>
+            </div>
+
+            <div class="tv-demo-panel">
+              <h3 class="tv-demo-title">Who watches</h3>
+              <div class="tv-demo-row">
+                <div class="tv-demo-label">
+                  <span>Age 25–34</span>
+                  <span>50%+</span>
+                </div>
+                <div class="tv-demo-track" aria-hidden="true">
+                  <span class="tv-demo-fill" style="width: 52%;"></span>
+                </div>
+              </div>
+              <div class="tv-demo-row">
+                <div class="tv-demo-label">
+                  <span>Instagram gender split</span>
+                  <span>~50 / 50</span>
+                </div>
+                <div class="tv-demo-track" aria-hidden="true">
+                  <span class="tv-demo-fill" style="width: 50%;"></span>
+                </div>
+              </div>
+              <p class="tv-demo-caption">TikTok skews more female; YouTube more male — long-form is the lane to widen the middle.</p>
+            </div>
+
+            <h3 class="tv-demo-title">What this channel is about</h3>
+            <ul class="tv-kit-pillars">
+              <li><strong>Society &amp; culture</strong> — technoculture, media history, public understanding of science</li>
+              <li><strong>Inclusive STEM</strong> — curiosity-first, no assumed background, repair literacy, women &amp; girls in STEM</li>
+            </ul>
+          </section>
+
+          <h2 class="tv-work-heading">Featured work</h2>
           <div class="tv-embed-grid" role="list">
             <article class="tv-embed-card" role="listitem">
               <p class="tv-embed-platform">TikTok</p>
@@ -120,30 +176,6 @@
               </div>
             </article>
           </div>
-
-          <section class="tv-stats" aria-labelledby="tv-stats-heading">
-            <h2 id="tv-stats-heading" class="tv-stats-heading">Audience &amp; reach</h2>
-            <p class="tv-stats-intro">Approximate platform figures (they shift over time).</p>
-            <ul class="tv-stats-numbers">
-              <li><strong>YouTube</strong> — ~600 subscribers · ~95K lifetime views</li>
-              <li><strong>TikTok</strong> — ~45K followers · on the order of ~700K views/year when active</li>
-              <li><strong>Instagram</strong> — ~2K followers · ~30K monthly views and growing</li>
-            </ul>
-            <p class="tv-stats-detail">
-              Instagram sits around a <strong>50/50</strong> gender split in a similar age band to other channels.
-              Across platforms, <strong>50%+</strong> of viewers are typically <strong>25–34</strong>, with a modest skew older beyond that.
-            </p>
-            <p class="tv-stats-composite">
-              Across platforms, audience skews younger adult; TikTok leans more female, YouTube more male — long-form is a chance to widen the middle.
-            </p>
-            <div class="tv-pillars">
-              <h3 class="tv-pillars-title">What this channel cluster is about</h3>
-              <ul>
-                <li><strong>Society &amp; culture:</strong> technoculture, media history, “tech isn’t neutral,” public understanding of science.</li>
-                <li><strong>Inclusive / non-gatekept STEM:</strong> curiosity-first, “no assumed background,” repair literacy, women and girls in STEM — with majority-female TikTok as one signal of who already shows up.</li>
-              </ul>
-            </div>
-          </section>
         </main>
       </div>
     </div>
@@ -157,11 +189,11 @@
   <div class="nav-drawer-backdrop" hidden></div>
   <aside class="nav-drawer" id="site-drawer" aria-hidden="true">
     <nav class="nav-drawer-inner" aria-label="Site">
-      <a href="index.html" class="nav-link nav-drawer-link">Home</a>
-      <a href="projects.html" class="nav-link nav-drawer-link">Projects</a>
-      <a href="music.html" class="nav-link nav-drawer-link">Music</a>
-      <a href="tv.html" class="nav-link nav-drawer-link" aria-current="page">TV</a>
-      <a href="about/" class="nav-link nav-drawer-link">About</a>
+      <a href="index.html" class="nav-drawer-home">🏠 Home</a>
+      <a href="projects.html" class="nav-link nav-drawer-link">🔧 Projects</a>
+      <a href="tv.html" class="nav-link nav-drawer-link" aria-current="page">📺 TV</a>
+      <a href="music.html" class="nav-link nav-drawer-link">🎵 Music</a>
+      <a href="about/" class="nav-link nav-drawer-link">✦ About</a>
     </nav>
   </aside>
 

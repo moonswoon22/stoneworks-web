@@ -81,7 +81,7 @@
 
   function initExit() {
     document.body.addEventListener('click', (e) => {
-      const a = e.target.closest('a.nav-link, a.home-button');
+      const a = e.target.closest('a.nav-link, a.home-button, a.nav-drawer-home');
       if (!a) return;
       const href = a.getAttribute('href');
       if (!isInternalNavHref(href)) return;
