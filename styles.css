@@ -390,6 +390,43 @@ body.page-shell-sub .header-row {
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
+    justify-content: flex-start;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 26px;
+  }
+
+  .nav-drawer-home {
+    display: block;
+    width: 100%;
+    padding: 4px 0 18px;
+    margin: 0 0 10px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--color-accent-line);
+    border-radius: 0;
+    min-width: 0;
+    font-family: 'Times New Roman', serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: var(--color-text);
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+
+  .nav-drawer-home:hover {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--color-accent-line);
+    color: var(--color-accent);
+    animation: none;
+  }
+
+  .nav-drawer-home:focus-visible {
+    outline: 2px solid #0066ff;
+    outline-offset: 2px;
   }
 
   body.nav-drawer-open {
@@ -561,6 +598,159 @@ body.page-shell-sub .header-row {
   /* ----- TV page ----- */
   .tv-page {
     text-align: left;
+  }
+
+  .tv-media-kit {
+    width: 100%;
+    padding: 24px;
+    margin-bottom: 36px;
+    background: var(--color-surface-panel-alt);
+    border: 2px solid var(--color-accent);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .tv-kit-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    color: #fff;
+  }
+
+  .tv-kit-dek {
+    margin: 0 0 22px;
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .tv-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+
+  .tv-stat-card {
+    background: var(--color-surface-panel);
+    border: 2px solid var(--color-accent-faint);
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tv-stat-platform {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  .tv-stat-value {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 1.1;
+    color: #fff;
+  }
+
+  .tv-stat-label {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    color: var(--color-text-soft);
+  }
+
+  .tv-stat-note {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 13px;
+    line-height: 1.35;
+    color: var(--color-text-faint);
+    margin-top: 4px;
+  }
+
+  .tv-demo-panel {
+    margin-bottom: 22px;
+    padding-top: 4px;
+    border-top: 1px solid var(--color-accent-line);
+  }
+
+  .tv-demo-title {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 0 0 12px;
+  }
+
+  .tv-demo-row {
+    margin-bottom: 12px;
+  }
+
+  .tv-demo-row:last-child {
+    margin-bottom: 0;
+  }
+
+  .tv-demo-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--color-text-soft);
+  }
+
+  .tv-demo-track {
+    height: 10px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+  }
+
+  .tv-demo-fill {
+    display: block;
+    height: 100%;
+    border-radius: 999px;
+    background: var(--color-accent);
+  }
+
+  .tv-demo-caption {
+    margin: 12px 0 0;
+    font-size: 15px;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+  }
+
+  .tv-kit-pillars {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tv-kit-pillars li {
+    background: rgba(0, 0, 0, 0.14);
+    border-left: 3px solid var(--color-accent);
+    border-radius: 0 8px 8px 0;
+    padding: 12px 14px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .tv-work-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 20px;
+    color: #fff;
   }
 
   .sub-main .tv-lead {
