@@ -289,40 +289,111 @@ body.page-shell-sub .header-row {
 
   .site-nav--home {
     display: none;
-    margin: 0;
   }
 
-  .nav-mobile-label {
+  /* ----- Mobile hamburger + left drawer ----- */
+  .nav-hamburger {
     display: none;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .nav-select {
-    width: 100%;
-    padding: 14px 44px 14px 18px;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 18px;
-    font-weight: 500;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 52px;
+    height: 52px;
+    padding: 0;
+    border-radius: 999px;
+    border: 3px solid var(--color-accent-border);
+    background: var(--color-pill);
     color: var(--color-text);
-    background-color: var(--color-surface);
-    border: 2px solid var(--color-accent-border);
-    border-radius: 10px;
     cursor: pointer;
-    appearance: none;
-    background-image:
-      linear-gradient(45deg, transparent 50%, var(--color-accent) 50%),
-      linear-gradient(135deg, var(--color-accent) 50%, transparent 50%);
-    background-position:
-      calc(100% - 22px) calc(50% + 2px),
-      calc(100% - 16px) calc(50% + 2px);
-    background-size: 6px 6px, 6px 6px;
-    background-repeat: no-repeat;
+    position: fixed;
+    top: max(14px, env(safe-area-inset-top, 14px));
+    left: max(14px, env(safe-area-inset-left, 14px));
+    z-index: 1100;
+    user-select: none;
   }
 
-  .nav-select:focus-visible {
+  .nav-hamburger-bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--color-text);
+    transition: transform 0.22s ease, opacity 0.22s ease;
+  }
+
+  .nav-hamburger.is-open .nav-hamburger-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-hamburger.is-open .nav-hamburger-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-hamburger.is-open .nav-hamburger-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-hamburger:focus-visible {
     outline: 2px solid #0066ff;
     outline-offset: 2px;
+  }
+
+  .nav-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1050;
+    background: rgba(15, 14, 18, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .nav-drawer-backdrop.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    width: min(300px, 88vw);
+    height: 100%;
+    height: 100dvh;
+    padding:
+      max(20px, env(safe-area-inset-top, 20px))
+      20px
+      max(24px, env(safe-area-inset-bottom, 24px));
+    background: var(--color-bg-deep);
+    border-right: 3px solid var(--color-accent-border);
+    box-sizing: border-box;
+    overflow-y: auto;
+    transform: translateX(-105%);
+    transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-drawer.is-open {
+    transform: translateX(0);
+  }
+
+  .nav-drawer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding-top: 8px;
+  }
+
+  .nav-drawer .nav-link {
+    margin-top: 0;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  body.nav-drawer-open {
+    overflow: hidden;
   }
 
   .visually-hidden {
@@ -1304,17 +1375,57 @@ body.page-shell-sub .header-row {
   
   /* ----- Responsive tweaks ----- */
   @media (max-width: 968px) {
+    body {
+      padding-top: max(72px, calc(env(safe-area-inset-top, 0px) + 60px));
+      align-items: flex-start;
+    }
+
+    body.page-shell-sub {
+      padding-top: max(72px, calc(env(safe-area-inset-top, 0px) + 60px));
+    }
+
+    body.page-shell-sub .container {
+      margin-top: 0;
+    }
+
+    body.page-shell-sub .page-top {
+      transform: none;
+    }
+
+    body.page-enter:not(.page-enter-visible) .page-top,
+    body.page-enter.page-enter-visible .page-top {
+      transform: none;
+      opacity: 1;
+    }
+
+    body.page-shell-sub .page-foreground > .content-wrapper {
+      margin-top: 12px;
+    }
+
+    .nav-hamburger {
+      display: flex;
+    }
+
     .top-nav {
       display: none;
     }
 
-    .nav-mobile-label {
-      display: block;
+    body.page-shell-sub .header-row .home-button {
+      display: none;
     }
 
-    .site-nav--home {
-      display: flex;
-      margin: 12px 0 28px;
+    body.nav-exit:not(.page-shell-sub) .page-top,
+    body.page-shell-sub.nav-exit .page-top {
+      transform: none;
+      opacity: 0.35;
+    }
+
+    .container {
+      padding: 40px 20px;
+    }
+
+    .header-row {
+      margin-bottom: 12px;
     }
 
     .content-wrapper {
