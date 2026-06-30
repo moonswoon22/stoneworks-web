@@ -957,6 +957,77 @@ body.page-shell-sub .header-row {
     margin-bottom: 8px;
   }
 
+  .article-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 600;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.95);
+    text-align: center;
+    margin: 0 auto 12px;
+    max-width: 720px;
+  }
+
+  .article-hero {
+    text-align: center;
+    margin: 0 auto 32px;
+    max-width: 720px;
+  }
+
+  .article-hero .article-dek {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .article-spotlight {
+    margin: 0 0 32px;
+  }
+
+  .article-spotlight .article-table-wrap {
+    margin-bottom: 0;
+  }
+
+  .archetype-expand {
+    margin-bottom: 8px;
+    border: 2px solid rgba(245, 185, 132, 0.35);
+    border-radius: 10px;
+    background: rgba(216, 203, 184, 0.12);
+    overflow: hidden;
+  }
+
+  .archetype-expand summary {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.92);
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 18px;
+  }
+
+  .archetype-expand summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .archetype-expand[open] summary {
+    border-bottom: 1px solid rgba(245, 185, 132, 0.25);
+    color: #f5b984;
+  }
+
+  .archetype-expand-body {
+    padding: 12px 18px 16px;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .archetype-expand-body p {
+    margin: 0 0 10px;
+  }
+
+  .archetype-expand-body p:last-child {
+    margin-bottom: 0;
+  }
+
   .article {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-size: 17px;
@@ -1025,6 +1096,21 @@ body.page-shell-sub .header-row {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 12px;
     margin: 0 0 28px;
+  }
+
+  .article-stats--center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .article-stats--center .article-stat {
+    flex: 1 1 140px;
+    max-width: 220px;
   }
 
   .article-stat {
