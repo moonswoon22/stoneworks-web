@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STONEWORKSXX</title>
+  <title>STONEWORKS</title>
 
   <!-- Kings header font (from index3) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,14 +50,14 @@
 
         <div class="title">
           <div class="title-word">
-            <span class="letter">s</span><span class="letter">t</span><span class="letter">o</span><span class="letter">n</span><span class="letter">e</span><span class="letter">w</span><span class="letter">o</span><span class="letter">r</span><span class="letter">k</span><span class="letter">s</span><span class="letter">x</span><span class="letter">x</span>
+            <span class="letter">s</span><span class="letter">t</span><span class="letter">o</span><span class="letter">n</span><span class="letter">e</span><span class="letter">w</span><span class="letter">o</span><span class="letter">r</span><span class="letter">k</span><span class="letter">s</span>
           </div>
         </div>
 
-        <h2 class="home-logline">A tech × art creator diving into the whimsical world of science — part mad-science laboratory, part curious classroom.</h2>
+        <h2 class="home-logline">Dive into the whimsical world of science, technology and art — part mad-science laboratory, part classroom of curiousities.</h2>
 
         <p class="hint hint-audio">
-          Unmute and hover over “stoneworksxx” to play.
+          Unmute and hover over “stoneworks” to play.
         </p>
 
         <div class="top-nav">
@@ -86,6 +86,7 @@
     </nav>
   </aside>
 
+  <script src="social-links.js"></script>
   <script src="page-transitions.js"></script>
   <script src="mobile-nav.js"></script>
   <script>
@@ -280,7 +281,7 @@
           if (now - last < 60) return;
           el.dataset.lastPing = String(now);
 
-          const base = scale[i % scale.length] * (i >= 7 ? 2 : 1);
+          const base = scale[i % scale.length] * (i >= 5 ? 2 : 1);
 
           // play base + up to 2 harmony notes (cap voices)
           const semis = Array.from(enabledSemitones).slice(0, MAX_VOICES);

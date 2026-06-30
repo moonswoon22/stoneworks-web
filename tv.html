@@ -64,33 +64,82 @@
             </div>
 
             <div class="tv-demo-panel">
-              <h3 class="tv-demo-title">Who watches</h3>
-              <div class="tv-demo-row">
-                <div class="tv-demo-label">
-                  <span>Age 25–34</span>
-                  <span>50%+</span>
-                </div>
-                <div class="tv-demo-track" aria-hidden="true">
-                  <span class="tv-demo-fill" style="width: 52%;"></span>
-                </div>
-              </div>
-              <div class="tv-demo-row">
-                <div class="tv-demo-label">
-                  <span>Instagram gender split</span>
-                  <span>~50 / 50</span>
-                </div>
-                <div class="tv-demo-track" aria-hidden="true">
-                  <span class="tv-demo-fill" style="width: 50%;"></span>
-                </div>
+              <h3 class="tv-section-heading">Who watches</h3>
+              <div class="tv-demo-charts">
+                <article class="tv-chart-card">
+                  <div class="tv-pie-wrap" aria-hidden="true">
+                    <div class="tv-pie" style="--segment-a: 52;"></div>
+                    <div class="tv-pie-hole"></div>
+                  </div>
+                  <div class="tv-chart-meta">
+                    <span class="tv-chart-title">Age 25–34</span>
+                    <span class="tv-chart-value">50%+</span>
+                    <span class="tv-chart-detail">Core audience across platforms</span>
+                  </div>
+                </article>
+
+                <article class="tv-chart-card">
+                  <div class="tv-pie-wrap" aria-hidden="true">
+                    <div class="tv-pie tv-pie--split" style="--segment-a: 58;"></div>
+                    <div class="tv-pie-hole"></div>
+                  </div>
+                  <div class="tv-chart-meta">
+                    <span class="tv-chart-title">TikTok gender</span>
+                    <span class="tv-chart-value">58% / 42%</span>
+                    <span class="tv-chart-detail">Women · men</span>
+                  </div>
+                </article>
+
+                <article class="tv-chart-card">
+                  <div class="tv-pie-wrap" aria-hidden="true">
+                    <div class="tv-pie tv-pie--split" style="--segment-a: 35;"></div>
+                    <div class="tv-pie-hole"></div>
+                  </div>
+                  <div class="tv-chart-meta">
+                    <span class="tv-chart-title">YouTube gender</span>
+                    <span class="tv-chart-value">35% / 65%</span>
+                    <span class="tv-chart-detail">Women · men</span>
+                  </div>
+                </article>
+
+                <article class="tv-chart-card">
+                  <div class="tv-pie-wrap" aria-hidden="true">
+                    <div class="tv-pie tv-pie--split" style="--segment-a: 50;"></div>
+                    <div class="tv-pie-hole"></div>
+                  </div>
+                  <div class="tv-chart-meta">
+                    <span class="tv-chart-title">Instagram gender</span>
+                    <span class="tv-chart-value">~50 / 50</span>
+                    <span class="tv-chart-detail">Even split</span>
+                  </div>
+                </article>
               </div>
               <p class="tv-demo-caption">TikTok skews more female; YouTube more male — long-form is the lane to widen the middle.</p>
             </div>
 
-            <h3 class="tv-demo-title">What this channel is about</h3>
-            <ul class="tv-kit-pillars">
-              <li><strong>Society &amp; culture</strong> — technoculture, media history, public understanding of science</li>
-              <li><strong>Inclusive STEM</strong> — curiosity-first, no assumed background, repair literacy, women &amp; girls in STEM</li>
-            </ul>
+            <div class="tv-focus-panel">
+              <h3 class="tv-section-heading">Channel focus</h3>
+              <ul class="tv-kit-pillars">
+                <li>
+                  <span class="tv-pillar-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm7.93 9h-3.17a15.9 15.9 0 0 0-1.2-4.66A8.02 8.02 0 0 1 19.93 11zM12 4c.97 0 2.53 2.01 3.17 5H8.83C9.47 6.01 11.03 4 12 4zM4.07 13h3.17c.22 1.68.74 3.28 1.2 4.66A8.02 8.02 0 0 1 4.07 13zm3.17-2H4.07a8.02 8.02 0 0 1 4.37-4.66c-.46 1.38-.98 2.98-1.2 4.66zM12 20c-.97 0-2.53-2.01-3.17-5h6.34C14.53 17.99 12.97 20 12 20zm4.76-1.34c.46-1.38.98-2.98 1.2-4.66h3.17a8.02 8.02 0 0 1-4.37 4.66zM13 11h5.93a8.03 8.03 0 0 1-2.43 3.74A15.8 15.8 0 0 0 13 11zm-2 0a15.8 15.8 0 0 0-3.5 3.74A8.03 8.03 0 0 1 5.07 11H11zm0 2a13.86 13.86 0 0 1 3.64 4H7.36A13.86 13.86 0 0 1 11 13z"/></svg>
+                  </span>
+                  <div class="tv-pillar-copy">
+                    <span class="tv-pillar-title">Society &amp; culture</span>
+                    <span class="tv-pillar-desc">Technoculture, media history, and public understanding of science</span>
+                  </div>
+                </li>
+                <li>
+                  <span class="tv-pillar-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="28" height="28"><path fill="currentColor" d="M10.5 2h3l1 4.5 3.5 2-3.5 2-1 4.5h-3l-1-4.5-3.5-2 3.5-2 1-4.5zM18 14l.9 2.6 2.6.9-2.6.9L18 21l-.9-2.6-2.6-.9 2.6-.9L18 14zM5 13l1.1 3.2L9.3 17.5 6.1 18.7 5 22l-1.1-3.3-3.2-1.2 3.2-1.2L5 13z"/></svg>
+                  </span>
+                  <div class="tv-pillar-copy">
+                    <span class="tv-pillar-title">Inclusive STEM</span>
+                    <span class="tv-pillar-desc">Curiosity-first explainers, repair literacy, and women &amp; girls in STEM</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
           </section>
 
           <h2 class="tv-work-heading">Featured work</h2>
@@ -197,6 +246,7 @@
     </nav>
   </aside>
 
+  <script src="social-links.js"></script>
   <script src="page-transitions.js"></script>
   <script src="mobile-nav.js"></script>
 </body>
