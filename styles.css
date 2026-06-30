@@ -6,19 +6,19 @@
   }
 
   /*
-   * Dusk palette — concrete street gray (hint of purple) + sunset pink-orange accents.
+   * Dusk palette — concrete street gray (hint of purple) + dusty sunset pink accents.
    */
   :root {
     --color-bg: #2c2a30;
     --color-bg-deep: #232126;
 
-    --color-accent: #e88978;
-    --color-accent-deep: #d86f5e;
-    --color-accent-border: rgba(232, 137, 120, 0.92);
-    --color-accent-soft: rgba(232, 137, 120, 0.45);
-    --color-accent-faint: rgba(232, 137, 120, 0.35);
-    --color-accent-line: rgba(232, 137, 120, 0.25);
-    --color-accent-muted: rgba(232, 137, 120, 0.65);
+    --color-accent: #d49a9e;
+    --color-accent-deep: #b87f84;
+    --color-accent-border: rgba(212, 154, 158, 0.92);
+    --color-accent-soft: rgba(212, 154, 158, 0.45);
+    --color-accent-faint: rgba(212, 154, 158, 0.35);
+    --color-accent-line: rgba(212, 154, 158, 0.25);
+    --color-accent-muted: rgba(212, 154, 158, 0.65);
 
     --color-surface: rgba(88, 86, 94, 0.82);
     --color-surface-soft: rgba(72, 70, 78, 0.55);
@@ -33,8 +33,8 @@
     --color-text-muted: rgba(255, 255, 255, 0.76);
     --color-text-faint: rgba(255, 255, 255, 0.62);
 
-    --color-title-hover: rgba(228, 208, 204, 0.95);
-    --color-title-glow: rgba(228, 208, 204, 0.5);
+    --color-title-hover: rgba(220, 198, 200, 0.95);
+    --color-title-glow: rgba(220, 198, 200, 0.5);
   }
   
   /* Layout base (matches index2/index3 background + centering) */
@@ -927,7 +927,7 @@ body.page-shell-sub .header-row {
   .project-thumb--one {
     background:
       linear-gradient(145deg, rgba(72, 68, 78, 0.55) 0%, transparent 55%),
-      linear-gradient(225deg, rgba(232, 137, 120, 0.18) 0%, transparent 50%),
+      linear-gradient(225deg, rgba(212, 154, 158, 0.18) 0%, transparent 50%),
       #56545c;
   }
 
