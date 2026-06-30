@@ -90,14 +90,6 @@
       e.preventDefault();
       navigateWithExit(href);
     });
-
-    document.querySelectorAll('.nav-select').forEach((select) => {
-      select.addEventListener('change', () => {
-        const href = select.value;
-        if (!href || !isInternalNavHref(href)) return;
-        navigateWithExit(href);
-      });
-    });
   }
 
   function boot() {
