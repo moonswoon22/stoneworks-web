@@ -267,12 +267,13 @@ body.page-shell-sub .page-foreground > .content-wrapper {
   margin-top: calc(-21vh + 28px);
 }
 
-/* Top header row: home (subpages) + mute — symmetrical corners */
+/* Top header row: social (left) + home / mute (right) — one control band */
 .header-row {
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
+  gap: 12px;
   margin-bottom: 24px;
 }
 
@@ -448,14 +449,24 @@ body.home-page .bg-crystal model-viewer {
   .site-social {
     display: flex;
     align-items: center;
-    gap: 10px;
-    z-index: 1100;
+    gap: 8px;
   }
 
-  .site-social--desktop {
-    position: fixed;
-    top: max(14px, env(safe-area-inset-top, 14px));
-    left: max(14px, env(safe-area-inset-left, 14px));
+  .site-social--header {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    padding: 6px 8px;
+    min-height: 52px;
+    border-radius: 999px;
+    border: 3px solid var(--color-accent-border);
+    background: var(--color-pill);
+    box-sizing: border-box;
+    flex-shrink: 0;
+  }
+
+  body.page-shell-sub .site-social--header {
+    margin-left: 0;
   }
 
   .nav-drawer-social {
@@ -472,19 +483,36 @@ body.home-page .bg-crystal model-viewer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
+    width: 40px;
+    height: 40px;
     border-radius: 999px;
-    border: 2px solid var(--color-accent-border);
-    background: var(--color-pill);
+    border: none;
+    background: transparent;
     color: var(--color-accent);
     text-decoration: none;
-    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+
+  .site-social--header .social-link:hover {
+    background: var(--color-accent);
+    color: #fff;
+  }
+
+  .nav-drawer-social .social-link {
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--color-accent-border);
+    background: var(--color-pill);
+  }
+
+  .nav-drawer-social .social-link:hover {
+    background: var(--color-accent);
+    border-color: rgba(255, 255, 255, 0.9);
+    color: #fff;
   }
 
   .social-link:hover {
     background: var(--color-accent);
-    border-color: rgba(255, 255, 255, 0.9);
     color: #fff;
   }
 
@@ -1980,7 +2008,7 @@ body.home-page .bg-crystal model-viewer {
       display: none;
     }
 
-    .site-social--desktop {
+    .site-social--header {
       display: none;
     }
 

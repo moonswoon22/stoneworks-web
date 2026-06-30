@@ -1,5 +1,5 @@
 /**
- * Inject @stoneworksxx social links — fixed top-left on desktop, drawer footer on mobile.
+ * Inject @stoneworksxx social links — header row on desktop, drawer footer on mobile.
  */
 (function () {
   const SOCIAL = [
@@ -44,13 +44,19 @@
     return nav;
   }
 
-  document.body.appendChild(buildNav('site-social site-social--desktop'));
+  const headerRow = document.querySelector('.header-row');
+  if (headerRow) {
+    const social = buildNav('site-social site-social--header');
+    const homeButton = headerRow.querySelector('.home-button');
+    if (homeButton) {
+      homeButton.insertAdjacentElement('afterend', social);
+    } else {
+      headerRow.insertBefore(social, headerRow.firstChild);
+    }
+  }
 
-  const drawerInner = document.querySelector('.nav-drawer-inner');
   const drawer = document.querySelector('.nav-drawer');
   if (drawer) {
     drawer.appendChild(buildNav('nav-drawer-social'));
-  } else if (drawerInner) {
-    drawerInner.appendChild(buildNav('nav-drawer-social'));
   }
 })();
