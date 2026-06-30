@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STONEWORKS</title>
+  <title>STONEWORKSXX</title>
 
   <!-- Kings header font (from index3) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,7 +17,7 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
-<body>
+<body class="home-page">
   <div class="container">
     <div class="bg-crystal" aria-hidden="true">
       <model-viewer
@@ -49,22 +49,21 @@
         </div>
 
         <div class="title">
-          <div>
-            <span class="letter">s</span>
-            <span class="letter">t</span>
-            <span class="letter">o</span>
-            <span class="letter">n</span>
-            <span class="letter">e</span>
-            <span class="letter">w</span>
-            <span class="letter">o</span>
-            <span class="letter">r</span>
-            <span class="letter">k</span>
-            <span class="letter">s</span>
+          <div class="title-word">
+            <span class="title-line title-line--stone">
+              <span class="letter">s</span><span class="letter">t</span><span class="letter">o</span><span class="letter">n</span><span class="letter">e</span>
+            </span><span class="title-line title-line--works">
+              <span class="letter">w</span><span class="letter">o</span><span class="letter">r</span><span class="letter">k</span><span class="letter">s</span>
+            </span><span class="title-line title-line--xx">
+              <span class="letter">x</span><span class="letter">x</span>
+            </span>
           </div>
         </div>
 
-        <p class="hint">
-          Unmute and hover over “stoneworks” to play.
+        <h2 class="home-logline">A tech × art creator diving into the whimsical world of science — part mad-science laboratory, part curious classroom.</h2>
+
+        <p class="hint hint-audio">
+          Unmute and hover over “stoneworksxx” to play.
         </p>
 
         <div class="top-nav">
@@ -100,7 +99,13 @@
       // ---------- DOM ----------
       const letters = Array.from(document.querySelectorAll('.letter'));
       const audioToggle = document.getElementById('audio-toggle');
-      const navLinks = Array.from(document.querySelectorAll('.nav-link'));
+      const navLinks = Array.from(document.querySelectorAll('.top-nav .nav-link'));
+      const isMobileAudio = window.matchMedia('(max-width: 968px), (hover: none) and (pointer: coarse)').matches;
+
+      if (isMobileAudio) {
+        document.body.classList.add('no-home-audio');
+      }
+
       if (!letters.length) return;
 
       // ---------- Musical settings ----------
@@ -164,7 +169,9 @@
       }
 
       setAudioUI(false);
-      audioToggle?.addEventListener('click', toggleAudio);
+      if (!isMobileAudio) {
+        audioToggle?.addEventListener('click', toggleAudio);
+      }
 
       // ---------- Play a note for letters (cheap) ----------
       // Safety: cap voices so harmonies can't explode CPU
@@ -252,7 +259,7 @@
       navLinks.forEach((link) => {
         const label = (link.textContent || '').trim().toLowerCase();
         link.addEventListener('mouseenter', () => {
-          if (!audioEnabled) return;
+          if (isMobileAudio || !audioEnabled) return;
 
           // Map nav to pentatonic scale (Projects · TV · Music · About)
           if (label === 'projects') {
@@ -272,13 +279,14 @@
       // ---------- Letter hover ----------
       letters.forEach((el, i) => {
         el.addEventListener('mouseenter', () => {
+          if (isMobileAudio) return;
           // debounce jitter
           const now = performance.now();
           const last = Number(el.dataset.lastPing || 0);
           if (now - last < 60) return;
           el.dataset.lastPing = String(now);
 
-          const base = scale[i % scale.length] * (i >= 5 ? 2 : 1);
+          const base = scale[i % scale.length] * (i >= 7 ? 2 : 1);
 
           // play base + up to 2 harmony notes (cap voices)
           const semis = Array.from(enabledSemitones).slice(0, MAX_VOICES);
@@ -300,13 +308,15 @@
 
       demoStrikeVisualOnly();
 
-      // wiggle the audio toggle once after 1s (visual hint)
-      setTimeout(() => {
-        if (!audioToggle) return;
-        audioToggle.classList.remove('wiggle');
-        void audioToggle.offsetWidth;
-        audioToggle.classList.add('wiggle');
-      }, 1000);
+      // wiggle the audio toggle once after 1s (visual hint, desktop only)
+      if (!isMobileAudio) {
+        setTimeout(() => {
+          if (!audioToggle) return;
+          audioToggle.classList.remove('wiggle');
+          void audioToggle.offsetWidth;
+          audioToggle.classList.add('wiggle');
+        }, 1000);
+      }
     })();
   </script>
 </body>
