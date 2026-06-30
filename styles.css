@@ -191,6 +191,37 @@
     -webkit-text-stroke: 3px var(--color-accent);
     paint-order: stroke fill;
   }
+
+  .title-word {
+    display: inline-block;
+  }
+
+  .title-line {
+    display: inline;
+    white-space: nowrap;
+  }
+
+  /* Homepage logline + audio hint */
+  .home-logline {
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1.35;
+    color: rgba(255, 255, 255, 0.88);
+    margin: 10px auto 8px;
+    max-width: 520px;
+  }
+
+  .hint.hint-audio {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 auto 18px;
+    max-width: 520px;
+  }
   
   .letter {
     display: inline-block;
@@ -372,6 +403,9 @@ body.page-shell-sub .header-row {
     overflow-y: auto;
     transform: translateX(-105%);
     transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 
   .nav-drawer.is-open {
@@ -382,7 +416,7 @@ body.page-shell-sub .header-row {
     display: flex;
     flex-direction: column;
     gap: 14px;
-    padding-top: 8px;
+    padding-top: 0;
   }
 
   .nav-drawer .nav-link {
@@ -949,6 +983,42 @@ body.page-shell-sub .header-row {
 
   .about-copy a:hover {
     color: #0066ff;
+  }
+
+  .about-bio-expand {
+    margin-top: 2px;
+  }
+
+  .about-bio-expand summary {
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-accent);
+    cursor: pointer;
+    list-style: none;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .about-bio-expand summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .about-bio-expand summary:hover {
+    color: var(--color-text);
+  }
+
+  .about-bio-full {
+    margin-top: 16px;
+  }
+
+  .about-bio-full p {
+    margin: 0 0 16px;
+  }
+
+  .about-bio-full p:last-child {
+    margin-bottom: 0;
   }
 
   /* Secondary panel (softer mauve) — distinct from music/project cards (nav-style fill) */
@@ -1628,8 +1698,48 @@ body.page-shell-sub .header-row {
       -webkit-text-stroke-width: 2px;
     }
 
+    .title-word {
+      display: block;
+    }
+
+    .title-line--xx {
+      display: block;
+    }
+
+    .title-line--stone,
+    .title-line--works {
+      display: inline;
+    }
+
+    .home-logline {
+      font-size: 18px;
+      max-width: 100%;
+      padding: 0 8px;
+      margin-top: 8px;
+      margin-bottom: 6px;
+    }
+
+    body.home-page {
+      padding-top: 0;
+      align-items: center;
+    }
+
+    body.home-page .container {
+      min-height: calc(100dvh - 40px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: max(56px, calc(env(safe-area-inset-top, 0px) + 48px));
+    }
+
+    body.home-page .header-row,
+    body.home-page .hint-audio,
+    body.home-page #audio-toggle {
+      display: none;
+    }
+
     .sub-page-lead,
-    .hint {
+    .hint:not(.hint-audio) {
       font-size: 20px;
       max-width: 100%;
       padding: 0 8px;
@@ -1646,6 +1756,7 @@ body.page-shell-sub .header-row {
     }
 
     .about-photo {
+      order: -1;
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
@@ -1689,5 +1800,11 @@ body.page-shell-sub .header-row {
     .music-feed-card.music-feed-card--no-player .music-card-art {
       max-width: 280px;
       justify-self: center;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .title-line {
+      display: block;
     }
   }
